@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useContext,useEffect, useReducer } from 'react';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
@@ -7,6 +7,8 @@ import Resort from '../components/Resort';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { Store } from '../Store';
+
 // import data from '../data';
 
 const reducer = (state, action) => {
@@ -23,11 +25,16 @@ const reducer = (state, action) => {
 };
 
 function ResortHome() {
-  const [{ loading, error, resorts }, dispatch] = useReducer(logger(reducer), {
+  const [{ loading, error, resorts   }, dispatch] = useReducer(logger(reducer), {
     resorts: [],
     loading: true,
     error: '',
+  
   });
+  const { state } = useContext(Store);
+
+  const {userInfo} = state;
+
   // const [resorts, setresorts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +50,7 @@ function ResortHome() {
     };
     fetchData();
   }, []);
+  console.log(userInfo)
   return (
     <div>
       <Helmet>
@@ -57,12 +65,20 @@ function ResortHome() {
         ) : (
           <Row>
             {resorts.map((resort) => {
-              if(resort.category!='Resort'){
+              if(userInfo.isResort&& (resort.email===userInfo.email)){
                 return(
-                <Col key={resort.slug} sm={6} md={4} lg={3} className="mb-3">
-                <Resort resort={resort}></Resort>
-              </Col>)
+                  <Col key={resort.slug} sm={6} md={4} lg={3} className="mb-3">
+                  <Resort resort={resort} user={userInfo}></Resort>
+                </Col>)
+                
               }
+              else if(!userInfo.isResort){
+                return(
+                  <Col key={resort.slug} sm={6} md={4} lg={3} className="mb-3">
+                  <Resort resort={resort} user={userInfo}></Resort>
+                </Col>)
+              }
+             
               
             })}
           </Row>

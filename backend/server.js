@@ -12,7 +12,7 @@ import bookingRouter from './routes/bookingRoutes.js';
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/hiddentales')
   .then(() => {
     console.log('connected to db');
   })

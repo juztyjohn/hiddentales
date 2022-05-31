@@ -8,6 +8,7 @@ import { Store } from '../Store';
 
 function Resort(props) {
   const { resort } = props;
+  const {user} = props;
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
@@ -27,7 +28,6 @@ function Resort(props) {
       payload: { ...item, quantity },
     });
   };
-
   return (
     <Card className='Card'>
       <Link to={`/resort/${resort.slug}`}>
@@ -39,13 +39,14 @@ function Resort(props) {
         </Link>
         <Rating rating={resort.rating} numReviews={resort.numReviews} />
         <Card.Text>Rs.{resort.price} /head</Card.Text>
-        {resort.countInStock === 0 ? (
+
+       {user.isResort?(<p>dsds</p>):( resort.countInStock === 0 ? (
           <Button variant="dark" disabled>
             Not Available
           </Button>
         ) : (
           <Button onClick={() => addToCartHandler(resort)}>whishlist</Button>
-        )}
+        ))}
       </Card.Body>
     </Card>
   );

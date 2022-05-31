@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
+import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
@@ -15,7 +16,8 @@ import { getError } from '../utils';
 import { Store } from '../Store';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { toast } from 'react-toastify';
-import Resort from '../components/Resort';
+import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'REFRESH_PLACE':
@@ -32,13 +34,7 @@ const reducer = (state, action) => {
       return { ...state, place: action.payload, loading: false };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
-      case 'FETCH_REQUEST1':
-        return { ...state, loading: true };
-      case 'FETCH_SUCCESS1':
-        return { ...state, resorts: action.payload, loading: false };
-      case 'FETCH_FAIL1':
-        return { ...state, loading: false, error: action.payload };
-      default:
+    default:
       return state;
   }
 };
@@ -54,7 +50,6 @@ function PlaceScreen() {
     },[])
   let reviewsRef = useRef();
 
-  // const [resorts, setresorts] = useState([]);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
@@ -62,12 +57,10 @@ function PlaceScreen() {
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
-  // const [categories, setCategories] = useState([]);
 
-  const [{ loading, error, place, resorts, loadingCreateReview }, dispatch] =
+  const [{ loading, error, place, loadingCreateReview }, dispatch] =
     useReducer(reducer, {
       place: [],
-      resorts: [],
       loading: true,
       error: '',
     });
@@ -83,22 +76,6 @@ function PlaceScreen() {
     };
     fetchData();
   }, [slug]);
-  useEffect(() => {
-    const fetchCategories = async () => {
-      dispatch({ type: 'FETCH_REQUEST1' });
-
-      try {
-        const  result  = await axios.get(`/api/resorts`);
-        dispatch({ type: 'FETCH_SUCCESS1', payload: result.data });
-
-      } catch (err) {
-        dispatch({ type: 'FETCH_FAIL1', payload: getError(err) });
-
-        toast.error(getError(err));
-      }
-    };
-    fetchCategories();
-  }, []);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
@@ -218,29 +195,6 @@ function PlaceScreen() {
               <p>{place.description}</p>
             </ListGroup.Item>
             </ListGroup>
-           <div>
-           <div>
-      <h1>Nearby Resorts</h1>
-      <div className="resorts">
-        {loading ? (
-          <LoadingBox />
-        ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
-          <Row>
-            {resorts.map((resort) => {
-              if(resort.city === place.city){
-                return(
-                <Col key={resort.slug} sm={6} md={4} lg={3} className="mb-3">
-                <Resort resort={resort}></Resort>
-              </Col>)
-              }
-              
-            })}
-          </Row>
-        )}
-      </div>
-    </div></div> 
       <div className="my-3">
         <h2 ref={reviewsRef}>Reviews</h2>
         <div className="mb-3">
