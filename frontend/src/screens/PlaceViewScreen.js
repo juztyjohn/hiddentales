@@ -177,6 +177,7 @@ export default function PlaceViewScreen() {
                   <div className="d-grid">
                     <Button
                       type="button"
+                      variant="dark"
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
                     >

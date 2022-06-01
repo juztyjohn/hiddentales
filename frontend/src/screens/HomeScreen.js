@@ -49,7 +49,7 @@ function HomeScreen() {
         <title>Hidden Tales</title>
       </Helmet>
       <h1>Featured Places</h1>
-      <div className="places">
+      <div>
         {loading ? (
           <LoadingBox />
         ) : error ? (

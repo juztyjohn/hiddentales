@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
-import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
@@ -134,13 +133,13 @@ function PlaceScreen() {
     <div>
       <Row >
         <Col md={6}>
-          <img
+          <img style={{marginTop:"40px", width:"750px" ,height:"500px"}}
             className="img-large"
             src={selectedImage || place.image}
             alt={place.name}
           ></img>
         </Col>
-        <Col md={3}>
+        <Col md={6}>
           <ListGroup variant="flush">
             <ListGroup.Item className='Card'>
               <Helmet>
@@ -155,7 +154,7 @@ function PlaceScreen() {
               ></Rating>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Row xs={1} md={2} className="g-2">
+              <Row xs={1} md={2}  className="g-2">
                 {[place.image, ...place.images].map((x) => (
                   <Col key={x}>
                     <Card>
@@ -165,7 +164,7 @@ function PlaceScreen() {
                         variant="light"
                         onClick={() => setSelectedImage(x)}
                       >
-                        <Card.Img variant="top" src={x} alt="place" />
+                        <Card.Img style={{width:"150px" ,height:"150px"}} variant="top" src={x} alt="place" />
                       </Button>
                     </Card>
                   </Col>

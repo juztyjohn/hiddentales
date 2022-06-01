@@ -57,7 +57,7 @@ function ResortHome() {
         <title>Hidden Tales</title>
       </Helmet>
       <h1>Featured Resorts</h1>
-      <div className="resorts">
+      <div>
         {loading ? (
           <LoadingBox />
         ) : error ? (

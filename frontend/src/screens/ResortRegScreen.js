@@ -85,7 +85,7 @@ export default function ResortRegScreen() {
           </Form.Group>
         </Form.Group>
         <div className="mb-3">
-          <Button type="submit">Sign Up</Button>
+          <Button type="submit" variant="dark">Sign Up</Button>
         </div>
         <div className="mb-3">
           Already have an account?{' '}

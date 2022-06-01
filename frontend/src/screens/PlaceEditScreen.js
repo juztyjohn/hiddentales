@@ -319,7 +319,7 @@ export default function PlaceEditScreen() {
             />
           </Form.Group>
           <div className="mb-3">
-            <Button disabled={loadingUpdate} type="submit">
+            <Button disabled={loadingUpdate} variant="dark" type="submit">
               Update
             </Button>
             {loadingUpdate && <LoadingBox></LoadingBox>}

@@ -126,6 +126,7 @@ function ResortScreen() {
       <Row>
         <Col md={6}>
           <img
+            style={{marginTop:"40px", width:"750px" ,height:"450px"}}
             className="img-large"
             src={selectedImage || resort.image}
             alt={resort.name}
@@ -257,7 +258,7 @@ function ResortScreen() {
               </FloatingLabel>
 
               <div className="mb-3">
-                <Button disabled={loadingCreateReview} type="submit">
+                <Button disabled={loadingCreateReview} variant="dark" type="submit">
                   Submit
                 </Button>
                 {loadingCreateReview && <LoadingBox></LoadingBox>}

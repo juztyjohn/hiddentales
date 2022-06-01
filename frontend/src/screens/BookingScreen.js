@@ -339,7 +339,7 @@ export default function BookingScreen() {
                   <ListGroup.Item>
                     {loadingCheckin && <LoadingBox></LoadingBox>}
                     <div className="d-grid">
-                      <Button type="button" onClick={checkinBookingHandler}>
+                      <Button type="button" variant="dark" onClick={checkinBookingHandler}>
                         Check-In Booking
                       </Button>
                     </div>

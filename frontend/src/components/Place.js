@@ -28,9 +28,9 @@ function Place(props) {
   // };
 
   return (
-    <Card className='Card'>
+    <Card className='Card' style={{width:"262px" ,height:"380px" }}>
       <Link to={`/place/${place.slug}`}>
-        <img src={place.image} className="card-img-top" alt={place.name} />
+        <img style={{width:"260px" ,height:"200px"}} src={place.image} className="card-img-top" alt={place.name} />
       </Link>
       <Card.Body>
         <Link to={`/place/${place.slug}`}>

@@ -29,9 +29,9 @@ function Resort(props) {
     });
   };
   return (
-    <Card className='Card'>
+    <Card className='Card' style={{width:"262px" ,height:"390px" }}>
       <Link to={`/resort/${resort.slug}`}>
-        <img src={resort.image} className="card-img-top" alt={resort.name} />
+        <img style={{width:"260px" ,height:"200px"}} src={resort.image} className="card-img-top" alt={resort.name} />
       </Link>
       <Card.Body>
         <Link to={`/resort/${resort.slug}`}>
@@ -45,7 +45,7 @@ function Resort(props) {
             Not Available
           </Button>
         ) : (
-          <Button onClick={() => addToCartHandler(resort)}>whishlist</Button>
+          <Button variant="dark" onClick={() => addToCartHandler(resort)}>whishlist</Button>
         ))}
       </Card.Body>
     </Card>
