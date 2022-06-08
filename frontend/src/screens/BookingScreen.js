@@ -171,6 +171,7 @@ export default function BookingScreen() {
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div>
+    <div id="non-printable">
       <Helmet>
         <title>Booking {bookingId}</title>
       </Helmet>
@@ -350,6 +351,114 @@ export default function BookingScreen() {
           </Card>
         </Col>
       </Row>
+      </div>
+      {booking.isPaid ? (
+      <div>
+        <div className="invoice-box">
+          <table cellPadding={0} cellSpacing={0}>
+            <tbody>
+              <tr className="top">
+                <td colSpan={2}>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td className="title">HIDDENTALES</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr className="information">
+                <td colSpan={2}>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>
+                          {booking.bookingAddress.fullName &&
+                            booking.bookingAddress.fullName}
+                          <br />
+                          {booking.bookingAddress.address &&
+                            booking.bookingAddress.address}
+                          <br />
+                          {booking.bookingAddress.postalCode &&
+                            booking.bookingAddress.postalCode}
+                        </td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {/* Invoice #: 123 */}
+                  <br />
+                  Created: {booking.createdAt.toString().substring(0, 10)}
+                  <br />
+                  {/* Due: February 1, 2015 */}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {/* Invoice #: 123 */}
+                  <br />
+                  <b> BOOKING ID: {booking._id}</b>
+                  <br />
+                  {/* Due: February 1, 2015 */}
+                </td>
+              </tr>
+
+              
+              {booking.bookingItems.map((item) => (
+                <>
+                  <tr>
+                    <td> {item.name}</td>
+                    <td></td>
+
+                    <td>{item.quantity}</td>
+                    <td>₹{item.price}</td>
+                  </tr>
+                  <tr className="heading"></tr>
+                </>
+              ))}
+
+              <tr className="heading">
+                <td>Total Price</td>
+                <td></td>
+
+                <td></td>
+                <td>₹{booking.totalPrice}</td>
+              </tr>
+              <tr className="heading">
+                <td>Payment Method</td>
+                <td></td>
+
+                <td></td>
+                <td>GooglePay</td>
+              </tr>
+              <br></br>
+              <tr>Greetings from HiddenTales.</tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="non-printable">
+          <Button
+            onClick={() => {
+              window.print();
+            }}
+          >
+            Print Bill
+          </Button>
+        </div>
+      </div>
+    ) : (
+      'jk'
+    )}
+  
     </div>
+    
   );
 }
