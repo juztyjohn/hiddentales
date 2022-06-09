@@ -57,7 +57,7 @@ export default function SignupScreen() {
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>
-          <Form.Control onChange={(e) => setName(e.target.value)} required />
+          <Form.Control input pattern='^[a-z A-Z]*' onChange={(e) => setName(e.target.value)} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="email">

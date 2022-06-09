@@ -72,7 +72,7 @@ export default function BookingAddressScreen() {
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="fullName">
             <Form.Label>Full Name</Form.Label>
-            <Form.Control
+            <Form.Control input pattern='^[a-z A-Z]*'
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
@@ -88,7 +88,7 @@ export default function BookingAddressScreen() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="city">
             <Form.Label>City</Form.Label>
-            <Form.Control
+            <Form.Control input pattern='^[a-z A-Z]*'
               value={city}
               onChange={(e) => setCity(e.target.value)}
               required
@@ -96,15 +96,16 @@ export default function BookingAddressScreen() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="postalCode">
             <Form.Label>Postal Code</Form.Label>
-            <Form.Control
+            <Form.Control 
               value={postalCode}
+              input type="number"
               onChange={(e) => setPostalCode(e.target.value)}
               required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="country">
             <Form.Label>Country</Form.Label>
-            <Form.Control
+            <Form.Control input pattern='^[a-z A-Z]*'
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               required

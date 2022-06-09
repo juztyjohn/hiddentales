@@ -143,7 +143,7 @@ export default function PlaceListScreen() {
         </Col>
         <Col className="col text-end">
           <div>
-            <Button type="button" onClick={createHandler}>
+            <Button type="button" variant='dark' onClick={createHandler}>
               Add Place
             </Button>
           </div>

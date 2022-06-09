@@ -61,7 +61,7 @@ export default function BookingHistoryScreen() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <table className="table">
+        <table className="table" style={{background:"white"}}>
           <thead>
             <tr>
               <th>ID</th>
@@ -87,7 +87,7 @@ export default function BookingHistoryScreen() {
                 <td>
                   <Button
                     type="button"
-                    variant="light"
+                    variant="dark"
                     onClick={() => {
                       navigate(`/booking/${booking._id}`);
                     }}

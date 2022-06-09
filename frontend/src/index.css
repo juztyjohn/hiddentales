@@ -161,7 +161,7 @@ button.thumbnail {
     
 }
 invoice-box {
-  max-width: 800px;
+  max-width: 600px;
   margin: auto;
   padding: 30px;
   border: 1px solid #eee;
